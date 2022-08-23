@@ -1,9 +1,9 @@
 <?php
 
 namespace Service{
+  
 
     use Repository\TodoListRepository;
-
     interface TodoListService{
         
         function showTodoList():void;
@@ -13,18 +13,18 @@ namespace Service{
 
     class TodoListServiceImpl implements TodoListService{
 
-        private TodoListRepository $todoListRepository ;
+        private TodoListRepository $todoListRepository;
 
         public function __construct(TodoListRepository $todoListRepository)
         {
-            $this->todoLisRepository=$todoListRepository;
+            $this->todoListRepository=$todoListRepository;
         }
         function showTodoList(): void
         {
 
             echo "TODOLIST" . PHP_EOL;
             foreach ($this->todoListRepository->findAll() as $number => $value) {
-                echo "$number. $value->dTodoList" . PHP_EOL;
+                echo "$number.". $value->getTodo() . PHP_EOL;
             }
         }
 

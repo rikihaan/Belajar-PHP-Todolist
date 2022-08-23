@@ -12,7 +12,7 @@ namespace Repository{
 
     class TodoListRepositoryImpl implements TodoListRepository{
         
-        private array $todolist = array();
+        public array $todolist = array();
 
         function save(Todolist $todolist): void
         {
