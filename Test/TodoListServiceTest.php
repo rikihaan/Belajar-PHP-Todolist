@@ -21,4 +21,30 @@ function testShowTodoList(){
     
 }
 
-testShowTodoList();
+function testAddTodoList(){
+    $todoListRepository = new TodoListRepositoryImpl();
+    $todoListService = new TodoListServiceImpl($todoListRepository);
+    $todoListService->addTodoList("BELAJAR PHP OOP");
+    $todoListService->addTodoList("BELAJAR GOLANG");
+    $todoListService->addTodoList("BELAJAR JAVASCRIPT");
+    $todoListService->showTodoList();
+    
+}
+
+function testRemoveTodoList(){
+    $todoListRepository = new TodoListRepositoryImpl();
+    $todoListService = new TodoListServiceImpl($todoListRepository);
+    $todoListService->addTodoList("BELAJAR PHP OOP");
+    $todoListService->addTodoList("BELAJAR GOLANG");
+    $todoListService->addTodoList("BELAJAR JAVASCRIPT");
+    $todoListService->showTodoList();
+    $todoListService->removeTodoList(1);
+    $todoListService->showTodoList();
+    $todoListService->removeTodoList(2);
+    $todoListService->showTodoList();
+    $todoListService->removeTodoList(3);
+    $todoListService->showTodoList();
+    
+}
+
+testRemoveTodoList();
