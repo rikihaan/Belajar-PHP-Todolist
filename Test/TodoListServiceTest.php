@@ -2,8 +2,11 @@
 require_once __DIR__."/../Entity/TodoList.php";
 require_once __DIR__."/../Repository/TodoListRepository.php";
 require_once __DIR__."/../Service/TodoListService.php";
+require_once __DIR__."/../Config/Database.php";
 
 // use todolist Service ImplsD
+
+use Config\Database;
 use Repository\TodoListRepositoryImpl;
 use Service\TodoListServiceImpl;
 use Entity\Todolist;
@@ -12,39 +15,36 @@ function testShowTodoList(){
 
     // memanggil service todoList
     // todolist Service memiliki contructor Parameternya bertype TodolistRepositosry, untuk itu kita buat repositry nya
-    $todoListRepository = new TodoListRepositoryImpl();
-    $todoListRepository->todolist[]= new Todolist("Belajar Javascrip");
-    $todoListRepository->todolist[]= new Todolist("Belajar PHP OOP");
-    $todoListRepository->todolist[]= new Todolist("Belajar GOLANG");
+    $connection = Database::getConnection();
+    $todoListRepository = new TodoListRepositoryImpl($connection);
     $todoListService = new TodoListServiceImpl($todoListRepository);
+    // $todoListService->addTodoList("BELAJAR PHP OOP");
+    // $todoListService->addTodoList("BELAJAR GOLANG");
+    // $todoListService->addTodoList("BELAJAR JAVASCRIPT");
     $todoListService->showTodoList();
     
 }
 
 function testAddTodoList(){
-    $todoListRepository = new TodoListRepositoryImpl();
+    $connection = Database::getConnection();
+    $todoListRepository = new TodoListRepositoryImpl($connection);
     $todoListService = new TodoListServiceImpl($todoListRepository);
     $todoListService->addTodoList("BELAJAR PHP OOP");
     $todoListService->addTodoList("BELAJAR GOLANG");
     $todoListService->addTodoList("BELAJAR JAVASCRIPT");
-    $todoListService->showTodoList();
+    // $todoListService->showTodoList();
     
 }
 
 function testRemoveTodoList(){
-    $todoListRepository = new TodoListRepositoryImpl();
+    $connection=Database::getConnection();
+    $todoListRepository = new TodoListRepositoryImpl($connection);
     $todoListService = new TodoListServiceImpl($todoListRepository);
-    $todoListService->addTodoList("BELAJAR PHP OOP");
-    $todoListService->addTodoList("BELAJAR GOLANG");
-    $todoListService->addTodoList("BELAJAR JAVASCRIPT");
-    $todoListService->showTodoList();
-    $todoListService->removeTodoList(1);
-    $todoListService->showTodoList();
-    $todoListService->removeTodoList(2);
-    $todoListService->showTodoList();
-    $todoListService->removeTodoList(3);
-    $todoListService->showTodoList();
-    
+    echo $todoListService->removeTodoList(5).PHP_EOL;
+    echo $todoListService->removeTodoList(4).PHP_EOL;
+    echo $todoListService->removeTodoList(3).PHP_EOL;
+    echo $todoListService->removeTodoList(3).PHP_EOL;
+    echo $todoListService->removeTodoList(1).PHP_EOL;
 }
 
-testRemoveTodoList();
+testShowTodoList();
