@@ -1,22 +1,25 @@
 <?php
-namespace Entity{
-    class Todolist{
+
+namespace Entity {
+    class Todolist
+    {
         private $todo;
 
-        public function __construct(string $todo="")
+        public function __construct(string $todo = "")
         {
-            $this->todo=$todo;
+            $this->todo = $todo;
         }
 
-        // for get property todo
+        // for get property todo 
         public function getTodo(): string
         {
             return $this->todo;
         }
 
         // for set property todo
-        public function setTodo(string $todo):void{
-            $this->todo=$todo;
+        public function setTodo(string $todo): void
+        {
+            $this->todo = $todo;
         }
     }
 }
